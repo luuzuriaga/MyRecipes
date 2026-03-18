@@ -6,6 +6,9 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/context/AuthContext';
 import RecipeCard from '@/components/RecipeCard';
 
+// Forzar renderizado dinámico (no static prerender) — necesario para useSearchParams + Supabase
+export const dynamic = 'force-dynamic';
+
 const CATEGORIES = [
   'Todas', 'Arroces', 'Sopas', 'Carnes', 'Pescados', 'Mariscos',
   'Postres', 'Vegetariana', 'Italiana', 'Mexicana', 'Asiática',
