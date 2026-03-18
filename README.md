@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍽️ MisRecetas
 
-## Getting Started
+Aplicación web de recetas construida con **Next.js** y **Supabase**. Permite explorar, buscar y compartir recetas de cocina.
 
-First, run the development server:
+## ✨ Funcionalidades
+
+### Parte pública
+- 📋 Listado de recetas paginado con filtros por categoría
+- 🔍 Buscador de recetas
+- 📄 Detalle de receta: ingredientes, pasos y tiempo de preparación
+- 👤 Perfil público de cada autor con sus recetas
+
+### Parte privada (requiere login)
+- 🔐 Login y registro de usuarios
+- ➕ Crear, editar y borrar tus propias recetas
+- ♥ Guardar recetas como favoritas
+- ⭐ Votar recetas (un voto por usuario)
+- 💬 Comentar recetas
+
+## 🛠️ Stack tecnológico
+
+| Tecnología | Uso |
+|---|---|
+| [Next.js 16](https://nextjs.org/) | Framework React con App Router |
+| [Supabase](https://supabase.com/) | Backend: Auth, PostgreSQL y RLS |
+| CSS3 nativo | Estilos (sin frameworks CSS) |
+| JavaScript | Lógica del cliente |
+
+## 🚀 Instalar y ejecutar
+
+### Prerrequisitos
+- Node.js 18+
+- Una cuenta en [Supabase](https://supabase.com/)
+
+### Instalación
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/luuzuriaga/MyRecipes.git
+cd MyRecipes
+
+# Instalar dependencias
+npm install
+```
+
+### Variables de entorno
+
+Crea un archivo `.env.local` en la raíz del proyecto:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://<tu-proyecto>.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<tu-anon-key>
+```
+
+### Ejecutar en desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Build de producción
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 🗄️ Esquema de base de datos
 
-To learn more about Next.js, take a look at the following resources:
+```
+profiles      → Perfil de cada usuario (vinculado a auth.users)
+recipes       → Recetas con título, descripción, imagen, tiempo y dificultad
+ingredients   → Ingredientes de cada receta
+steps         → Pasos de preparación de cada receta
+comments      → Comentarios en recetas
+likes         → Votos (un voto por usuario por receta)
+favorites     → Recetas favoritas de cada usuario
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Estructura del proyecto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/
+│   ├── page.js              # Página principal
+│   ├── layout.js            # Layout raíz con Navbar y Footer
+│   ├── globals.css          # Estilos globales
+│   ├── auth/page.js         # Login y registro
+│   ├── receta/[id]/page.js  # Detalle de receta
+│   ├── mi-perfil/page.js    # Perfil del usuario autenticado
+│   ├── perfil/[id]/page.js  # Perfil público de otro usuario
+│   └── favoritos/page.js    # Recetas favoritas
+├── components/
+│   ├── Navbar.js
+│   ├── Footer.js
+│   ├── RecipeCard.js
+│   └── RecipeFormModal.js
+├── context/
+│   └── AuthContext.js       # Contexto de autenticación global
+└── lib/
+    └── supabase.js          # Cliente de Supabase
+```
 
-## Deploy on Vercel
+## 👤 Usuarios de prueba (seed)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Email | Contraseña |
+|---|---|
+| `maria@recetas.es` | `Password123!` |
+| `carlos@recetas.es` | `Password123!` |
+| `ana@recetas.es` | `Password123!` |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+Hecho con ❤️ para amantes de la cocina.
