@@ -1,5 +1,7 @@
 # 🍽️ MisRecetas
 
+🌐 **Demo en vivo:** [https://myrecipes-iota.vercel.app](https://myrecipes-iota.vercel.app)
+
 Aplicación web de recetas construida con **Next.js** y **Supabase**. Permite explorar, buscar y compartir recetas de cocina.
 
 ## ✨ Funcionalidades
