@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/context/AuthContext';
@@ -14,7 +14,7 @@ const CATEGORIES = [
 
 const PER_PAGE = 8;
 
-export default function HomePage() {
+function HomePageContent() {
   const { user } = useAuth();
   const searchParams = useSearchParams();
   const [recipes, setRecipes] = useState([]);
@@ -219,5 +219,13 @@ export default function HomePage() {
         </div>
       </section>
     </>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<div className="loading-page"><div className="spinner" /></div>}>
+      <HomePageContent />
+    </Suspense>
   );
 }
